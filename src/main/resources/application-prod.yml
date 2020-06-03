@@ -1,0 +1,9 @@
+management:
+  server:
+    port: 7001
+    address: 127.0.0.1
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      roles: "*"
