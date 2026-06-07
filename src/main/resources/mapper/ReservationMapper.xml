@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.akx.demo.mapper.ReservationMapper">
+
+    <select id="getFullRsvnInfo" resultType="com.akx.demo.model.dto.ReservationDTO">
+        select
+        a.id as rsvnId, a.start_time, a.end_time, a.room_id, b.room_name,
+        b.capacity, a.user_id, c.real_name, c.mobile, a.dept_id,
+        d.dept_name, a.title, a.user_count, a.status
+        from
+        mr_reservation a
+        left join mr_room b on a.room_id = b.id
+        left join mr_user c on a.user_id = c.id
+        left join mr_dept d on a.dept_id = d.id
+        where
+            a.start_time <![CDATA[ >= ]]> #{startTime} and a.end_time <![CDATA[ <= ]]> #{endTime}
+    </select>
+
+</mapper>
